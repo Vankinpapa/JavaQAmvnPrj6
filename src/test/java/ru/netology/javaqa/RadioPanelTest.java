@@ -11,12 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioPanelTest {
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/enterRadioChannel.csv")
-    void testEnterRadioChannel(int newRadioChannel, int expected) {
-        Radio radio = new Radio();
+    void testEnterRadioChannel(int quantityRadioStation, int newRadioChannel, int expected) {
 
+        //устанавливаем количество радиостанций:
+        Radio radio = new Radio(quantityRadioStation);
+
+        //устанавливаем номер радиостанции:
         radio.setRadioChannel(newRadioChannel);
 
-        //int expected = 1;
         int actual = radio.getRadioChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -24,28 +26,34 @@ class RadioPanelTest {
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/nextRadioChannel.csv")
-    void testNextRadioChannel(int newRadioChannel, int expected) {
-        Radio radio = new Radio();
+    void testNextRadioChannel(int quantityRadioStation, int newRadioChannel, int expected) {
 
+        //устанавливаем количество радиостанций:
+        Radio radio = new Radio(quantityRadioStation);
+
+        //устанавливаем номер радиостанции:
         radio.setRadioChannel(newRadioChannel);
 
+        //Переключаем на стледующую радиостанцию:
         radio.nextRadioChannel();
 
-        //int expected = 3;
         int actual = radio.getRadioChannel();
         Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/prevRadioChannel.csv")
-    void testPrevRadioChannel(int newRadioChannel, int expected) {
-        Radio radio = new Radio();
+    void testPrevRadioChannel(int quantityRadioStation, int newRadioChannel, int expected) {
 
+        //устанавливаем количество радиостанций:
+        Radio radio = new Radio(quantityRadioStation);
+
+        //устанавливаем номер радиостанции:
         radio.setRadioChannel(newRadioChannel);
 
+        //Переключаем на предыдущую радиостанцию:
         radio.prevRadioChannel();
 
-        //int expected = 9;
         int actual = radio.getRadioChannel();
         Assertions.assertEquals(expected, actual);
     }
@@ -55,9 +63,9 @@ class RadioPanelTest {
     void testCurrentVolume(int currentVolume, int expected) {
         Radio radio = new Radio();
 
+        //Устанавливаем уровень звука:
         radio.setVolume(currentVolume);
 
-        //int expected = 0;
         int actual = radio.getVolume();
         Assertions.assertEquals(expected, actual);
     }
@@ -67,11 +75,12 @@ class RadioPanelTest {
     void testIncreaseVolume(int currentVolume, int expected) {
         Radio radio = new Radio();
 
+        //Устанавливаем уровень звука:
         radio.setVolume(currentVolume);
 
+        //Увеличиваем громкость:
         radio.increaseVolume();
 
-        //int expected = 6;
         int actual = radio.getVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -82,11 +91,12 @@ class RadioPanelTest {
     void testDownVolume(int currentVolume, int expected) {
         Radio radio = new Radio();
 
+        //Устанавливаем уровень звука:
         radio.setVolume(currentVolume);
 
+        //Уменьшаем громкость:
         radio.downVolume();
 
-        //int expected = 0;
         int actual = radio.getVolume();
 
         Assertions.assertEquals(expected, actual);
